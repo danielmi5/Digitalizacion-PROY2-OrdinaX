@@ -18,8 +18,7 @@ El sistema organizará los archivos en base a diferentes criterios, tales como:
 - **Por tipo de archivo:** Se almacenarán en carpetas según su extensión.  
   - Ejemplo: `Python -> .py`, `Word -> .docx`, `Imágenes -> .jpg, .png`.  
 - **Por fecha:** Se clasificarán según la fecha de creación o modificación.  
-  - Ejemplo: Carpetas organizadas por año `2022, 2023...`.  
-- **Por tamaño:** Se podrán agrupar los archivos según su peso en megabytes o gigabytes.  
+  - Ejemplo: Carpetas organizadas por año `2022, 2023...`.   
 - **Por nombre o patrón:** Permitirá filtrar y ordenar archivos siguiendo un esquema de nombres definido.  
 
 ### 🔄 Modo Automático y Manual  
