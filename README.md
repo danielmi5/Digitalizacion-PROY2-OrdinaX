@@ -14,7 +14,7 @@ El objetivo principal es **automatizar** la tarea de organizar archivos de maner
 ## Características  
 
 ### 📂 Clasificación Automática  
-El sistema organizará los archivos en base a diferentes criterios, tales como:  
+El sistema organizará los archivos en base a diferentes criterios:  
 - **Por tipo de archivo:** Se almacenarán en carpetas según su extensión.  
   - Ejemplo: `Python -> .py`, `Word -> .docx`, `Imágenes -> .jpg, .png`.  
 - **Por fecha:** Se clasificarán según la fecha de creación o modificación.  
