@@ -3,7 +3,7 @@
 ## Descripción General  
 El proyecto consiste en un **sistema de organización automática de archivos**, diseñado para facilitar la gestión y clasificación de documentos dentro de un sistema de directorios.  
 
-El objetivo es **automatizar** la tarea de organizar archivos de manera eficiente, permitiendo que estos se **clasifiquen y se muevan** sin intervención manual. Este sistema es ideal para usuarios que manejan grandes volúmenes de archivos y necesitan mantener un orden coherente sin invertir tiempo en tareas repetitivas.  
+El objetivo principal es **automatizar** la tarea de organizar archivos de manera eficiente, permitiendo que estos se **clasifiquen y se muevan** sin intervención manual. Este sistema es ideal para usuarios que manejan grandes volúmenes de archivos y necesitan mantener un orden coherente sin invertir tiempo en tareas repetitivas.  
 
 ## Objetivos  
 - **Reducir el tiempo y esfuerzo** dedicado a la organización manual de archivos.  
