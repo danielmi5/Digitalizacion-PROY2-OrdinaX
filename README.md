@@ -52,8 +52,8 @@ El sistema contará con una interfaz gráfica sencilla e intuitiva, diseñada co
 - `watchdog` → Detección de cambios en archivos en tiempo real.  
 
 ## Posibles Mejoras Futuras  
-- **Soporte para almacenamiento en la nube** (Google Drive, Dropbox).  
+- **Soporte para almacenamiento en la nube**.
 - **Integración con bases de datos** para un historial más robusto.  
-- **Compatibilidad con más formatos y sistemas operativos** (Windows, Linux, macOS).  
+- **Compatibilidad con más formatos y sistemas operativos**.
 
 ---
