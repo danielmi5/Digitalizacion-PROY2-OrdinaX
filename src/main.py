@@ -1,4 +1,4 @@
-import os, shutil, datetime
+import os, shutil, datetime, re
 
 # Diccionario con las categorías de carpetas y las extensiones asociadas
 tipos_de_archivos = {
@@ -16,64 +16,102 @@ tipos_de_archivos = {
     "otros": [".md", ".json", ".xml", ".yml", ".ini", ".log"],  # Otros tipos de archivo comunes
 }
 
+hist = dict()
 
-def clasificador_por_tipo(origen):
 
-    # Recorre todos los archivos en la carpeta de origen
+# Ruta del archivo de registro
+LOG_FILE = "src\\registro_actividad.txt"
+
+def registrar_evento(msj):
+    """
+    Registra eventos en un archivo de texto.
+    """
+    evento = LOG_FILE
+    fecha_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(evento, "a") as log:
+        log.write(f"{fecha_hora} - {msj}\n")
+        
+def empezar_evento(evento):
+    fecha = datetime.datetime.now().strftime("%Y-%m-%d")
+    with open(evento, "a") as log:
+        log.write(f"{fecha}\n")
+
+def clasificador_por_tipo(origen, tipos_de_archivos = tipos_de_archivos):
     for archivo in os.listdir(origen):
         ruta_completa = os.path.join(origen, archivo)
-        if os.path.isfile(ruta_completa):  # Verifica si es un archivo
-
-            print(f"Archivo: {archivo}")
-
-            # Obtiene la extensión del archivo
+        if os.path.isfile(ruta_completa):
             extension = os.path.splitext(archivo)[-1].lower()
-
-            # Recorre las carpetas de tipo de archivo
-            for carpeta in tipos_de_archivos.keys():
-
-                if extension in tipos_de_archivos[carpeta]:
+            for carpeta, extensiones in tipos_de_archivos.items():
+                if extension in extensiones:
                     destino = os.path.join(origen, carpeta)
-
-                    # Si la carpeta no existe, la crea.
                     if not os.path.exists(destino):
                         os.makedirs(destino)
-                        print(f"Carpeta creada: {destino}")
-
-                    # Mover el archivo
+                        registrar_evento(f"Carpeta creada: {destino}")
                     try:
                         shutil.move(ruta_completa, os.path.join(destino, archivo))
-                        print(f"Archivo {archivo} movido a: {destino}")
+                        registrar_evento(f"Archivo {archivo} movido a: {destino}")
                     except Exception as e:
-                        print(f"Error al mover el archivo {archivo}: {e}")
+                        registrar_evento(f"Error al mover el archivo {archivo}: {e}")
 
-
-def clasificador_por_fecha(origen, recorre_carpetas = False):
-    if not recorre_carpetas:
-        # Recorre todos los archivos en la carpeta de origen
-        for archivo in os.listdir(origen):
-            ruta_completa = os.path.join(origen, archivo)
+def clasificador_por_fecha(origen):
+    for archivo in os.listdir(origen):
+        ruta_completa = os.path.join(origen, archivo)
+        if os.path.isfile(ruta_completa):
             tiempo = os.path.getmtime(ruta_completa)
             anio_archivo = datetime.datetime.fromtimestamp(tiempo).year
             destino = os.path.join(origen, str(anio_archivo))
-            if os.path.isfile(ruta_completa):  # Verifica si es un archivo
+            if not os.path.exists(destino):
+                os.makedirs(destino)
+                registrar_evento(f"Carpeta creada: {destino}")
+            try:
+                shutil.move(ruta_completa, os.path.join(destino, archivo))
+                registrar_evento(f"Archivo {archivo} movido a: {destino}")
+            except Exception as e:
+                registrar_evento(f"Error al mover el archivo {archivo}: {e}")
 
-                print(f"Archivo: {archivo}")
+def clasificador_por_patron(origen, nombreCarpeta, patron):
+    regex = re.compile(patron)
+    for archivo in os.listdir(origen):
+        ruta_completa = os.path.join(origen, archivo)
+        nombre_sin_extension = os.path.splitext(archivo)[0]
+        if regex.match(nombre_sin_extension):
+            destino = os.path.join(origen, nombreCarpeta)
+            if not os.path.exists(destino):
+                os.makedirs(destino)
+                registrar_evento(f"Carpeta creada: {destino}")
+            try:
+                shutil.move(ruta_completa, os.path.join(destino, archivo))
+                registrar_evento(f"Archivo {archivo} movido a: {destino}")
+            except Exception as e:
+                registrar_evento(f"Error al mover el archivo {archivo}: {e}")
 
-                # Si la carpeta no existe, la crea.
+def clasificador_por_patron2(origen, dictPatrones):
+    for nombreCarpeta, patron in dictPatrones.items():
+        regex = re.compile(patron)
+        for archivo in os.listdir(origen):
+            ruta_completa = os.path.join(origen, archivo)
+            nombre_sin_extension = os.path.splitext(archivo)[0]
+            if regex.match(nombre_sin_extension):
+                destino = os.path.join(origen, nombreCarpeta)
                 if not os.path.exists(destino):
                     os.makedirs(destino)
-                    print(f"Carpeta creada: {destino}")
-
-                # Mover el archivo
+                    registrar_evento(f"Carpeta creada: {destino}")
                 try:
                     shutil.move(ruta_completa, os.path.join(destino, archivo))
-                    print(f"Archivo {archivo} movido a: {destino}")
+                    registrar_evento(f"Archivo {archivo} movido a: {destino}")
                 except Exception as e:
-                    print(f"Error al mover el archivo {archivo}: {e}")
-            else: print("ARCHIVO MALO")
-
-
+                    registrar_evento(f"Error al mover el archivo {archivo}: {e}")
+        
+def mostrar_log():
+    """
+    Muestra el contenido del archivo de registro en la consola.
+    """
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r") as log:
+            print("=== REGISTRO DE ACTIVIDAD ===")
+            print(log.read())
+    else:
+        print("No hay registros disponibles.")
 
 def main():
     origen = "C:\\Users\danie\Documents\zDAWGIT\\xgit\Digitalizacion-PROY2-OrdinaX\prueba"
@@ -82,8 +120,11 @@ def main():
     if not os.path.exists(origen):
         print("La ruta especificada no existe.")
     else:
+        empezar_evento(LOG_FILE)
         clasificador_por_tipo(origen)
-        clasificador_por_fecha(os.path.join(origen, "python"))
+        clasificador_por_fecha(origen)
+        clasificador_por_patron2(origen+"\imagenes", {"msi" : "msi"})
+    mostrar_log()
 
 
 
