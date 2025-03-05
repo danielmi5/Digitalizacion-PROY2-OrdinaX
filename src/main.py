@@ -1,133 +1,118 @@
-import os, shutil, datetime, re
+import os, shutil
+import datetime, time
+import re
+import config  # Importa la configuración
 
-# Diccionario con las categorías de carpetas y las extensiones asociadas
-tipos_de_archivos = {
-    "python": [".py", ".pyc", ".pyo"],  # Archivos Python
-    "kotlin": ["kt"],  # Archivos Kotlin
-    "documentos": [".docx", ".doc", ".pdf", ".txt", ".odt"],  # Archivos de texto y documentos
-    "imagenes": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff"],  # Archivos de imagen
-    "videos": [".mp4", ".mkv", ".avi", ".mov", ".flv"],  # Archivos de video
-    "audio": [".mp3", ".wav", ".flac", ".aac", ".ogg"],  # Archivos de audio
-    "presentaciones": [".pptx", ".ppt", ".odp"],  # Archivos de presentaciones
-    "hojas_de_calculo": [".xlsx", ".xls", ".ods", ".csv"],  # Archivos de hojas de cálculo
-    "archivos_comprimidos": [".zip", ".rar", ".tar", ".gz", ".7z"],  # Archivos comprimidos
-    "codigo_fuente": [".cpp", ".h", ".java", ".js", ".html", ".css"],  # Archivos de código fuente
-    "web": [".html", ".css", ".js"],  # Archivos web
-    "otros": [".md", ".json", ".xml", ".yml", ".ini", ".log"],  # Otros tipos de archivo comunes
-}
+def registros_salto():
+     with open(config.ARCHIVO_LOG, "a", encoding="utf-8") as log:
+        log.write("\n")
 
-hist = dict()
-
-
-# Ruta del archivo de registro
-LOG_FILE = "src\\registro_actividad.txt"
-
+# Función para registrar eventos en el archivo de log
 def registrar_evento(msj):
-    """
-    Registra eventos en un archivo de texto.
-    """
-    evento = LOG_FILE
+    """ Registra eventos en un archivo de texto. """
     fecha_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(evento, "a") as log:
+    with open(config.ARCHIVO_LOG, "a", encoding="utf-8") as log:
         log.write(f"{fecha_hora} - {msj}\n")
-        
-def empezar_evento(evento):
-    fecha = datetime.datetime.now().strftime("%Y-%m-%d")
-    with open(evento, "a") as log:
-        log.write(f"{fecha}\n")
 
-def clasificador_por_tipo(origen, tipos_de_archivos = tipos_de_archivos):
+# Función para clasificar por tipo de archivo
+def clasificador_por_tipo(origen):
+    """ Mueve archivos a carpetas según su extensión. """
     for archivo in os.listdir(origen):
         ruta_completa = os.path.join(origen, archivo)
         if os.path.isfile(ruta_completa):
             extension = os.path.splitext(archivo)[-1].lower()
-            for carpeta, extensiones in tipos_de_archivos.items():
+            for carpeta, extensiones in config.TIPOS_DE_ARCHIVOS.items():
                 if extension in extensiones:
-                    destino = os.path.join(origen, carpeta)
-                    if not os.path.exists(destino):
-                        os.makedirs(destino)
-                        registrar_evento(f"Carpeta creada: {destino}")
-                    try:
-                        shutil.move(ruta_completa, os.path.join(destino, archivo))
-                        registrar_evento(f"Archivo {archivo} movido a: {destino}")
-                    except Exception as e:
-                        registrar_evento(f"Error al mover el archivo {archivo}: {e}")
+                    mover_archivo(ruta_completa, os.path.join(origen, carpeta))
 
+# Función para clasificar por fecha
 def clasificador_por_fecha(origen):
+    """ Mueve archivos a carpetas según su año de modificación. """
     for archivo in os.listdir(origen):
         ruta_completa = os.path.join(origen, archivo)
         if os.path.isfile(ruta_completa):
-            tiempo = os.path.getmtime(ruta_completa)
-            anio_archivo = datetime.datetime.fromtimestamp(tiempo).year
-            destino = os.path.join(origen, str(anio_archivo))
-            if not os.path.exists(destino):
-                os.makedirs(destino)
-                registrar_evento(f"Carpeta creada: {destino}")
-            try:
-                shutil.move(ruta_completa, os.path.join(destino, archivo))
-                registrar_evento(f"Archivo {archivo} movido a: {destino}")
-            except Exception as e:
-                registrar_evento(f"Error al mover el archivo {archivo}: {e}")
+            anio_archivo = datetime.datetime.fromtimestamp(os.path.getmtime(ruta_completa)).year
+            mover_archivo(ruta_completa, os.path.join(origen, str(anio_archivo)))
 
-def clasificador_por_patron(origen, nombreCarpeta, patron):
+# Función para clasificar por patrón de nombre
+def clasificador_por_patron(origen, nombre_carpeta, patron):
+    """ Mueve archivos que coincidan con un patrón de nombre. """
     regex = re.compile(patron)
     for archivo in os.listdir(origen):
-        ruta_completa = os.path.join(origen, archivo)
-        nombre_sin_extension = os.path.splitext(archivo)[0]
-        if regex.match(nombre_sin_extension):
-            destino = os.path.join(origen, nombreCarpeta)
-            if not os.path.exists(destino):
-                os.makedirs(destino)
-                registrar_evento(f"Carpeta creada: {destino}")
-            try:
-                shutil.move(ruta_completa, os.path.join(destino, archivo))
-                registrar_evento(f"Archivo {archivo} movido a: {destino}")
-            except Exception as e:
-                registrar_evento(f"Error al mover el archivo {archivo}: {e}")
+        if regex.match(os.path.splitext(archivo)[0]):
+            mover_archivo(os.path.join(origen, archivo), os.path.join(origen, nombre_carpeta))
 
-def clasificador_por_patron2(origen, dictPatrones):
-    for nombreCarpeta, patron in dictPatrones.items():
-        regex = re.compile(patron)
-        for archivo in os.listdir(origen):
-            ruta_completa = os.path.join(origen, archivo)
-            nombre_sin_extension = os.path.splitext(archivo)[0]
-            if regex.match(nombre_sin_extension):
-                destino = os.path.join(origen, nombreCarpeta)
-                if not os.path.exists(destino):
-                    os.makedirs(destino)
-                    registrar_evento(f"Carpeta creada: {destino}")
-                try:
-                    shutil.move(ruta_completa, os.path.join(destino, archivo))
-                    registrar_evento(f"Archivo {archivo} movido a: {destino}")
-                except Exception as e:
-                    registrar_evento(f"Error al mover el archivo {archivo}: {e}")
-        
+# Función para clasificar según varios patrones de nombres
+def clasificador_por_patron2(origen, dict_patrones):
+    """ Clasifica archivos en varias carpetas según patrones de nombres. """
+    for nombre_carpeta, patron in dict_patrones.items():
+        clasificador_por_patron(origen, nombre_carpeta, patron)
+
+# Función para mover archivos a la carpeta destino
+def mover_archivo(archivo, destino):
+    """ Mueve un archivo a la carpeta destino, creándola si es necesario. """
+    try:
+        if not os.path.exists(destino):
+            os.makedirs(destino)
+            registrar_evento(f"Carpeta creada: {destino}")
+
+        shutil.move(archivo, os.path.join(destino, os.path.basename(archivo)))
+        registrar_evento(f"Archivo {os.path.basename(archivo)} movido a: {destino}")
+    except Exception as e:
+        registrar_evento(f"Error al mover {os.path.basename(archivo)}: {e}")
+
+# Función para mostrar el log de actividades
 def mostrar_log():
-    """
-    Muestra el contenido del archivo de registro en la consola.
-    """
-    if os.path.exists(LOG_FILE):
-        with open(LOG_FILE, "r") as log:
+    """ Muestra el contenido del archivo de registro en la consola. """
+    if os.path.exists(config.ARCHIVO_LOG):
+        with open(config.ARCHIVO_LOG, "r", encoding="utf-8") as log:
             print("=== REGISTRO DE ACTIVIDAD ===")
             print(log.read())
     else:
         print("No hay registros disponibles.")
 
-def main():
-    origen = "C:\\Users\danie\Documents\zDAWGIT\\xgit\Digitalizacion-PROY2-OrdinaX\prueba"
+# Función principal que ejecuta la clasificación
+def ejecutar_clasificacion():
+    origen = config.RUTA_ORIGEN  # Utiliza la ruta definida en config.py
 
-    # Verificar si la ruta de origen existe
     if not os.path.exists(origen):
         print("La ruta especificada no existe.")
+        return
+
+    registrar_evento(f"Iniciando clasificación en: {origen}")
+    
+    # Clasificación por tipo de archivo
+    clasificador_por_tipo(origen)
+    
+    # Clasificación por fecha
+    clasificador_por_fecha(origen)
+    
+    # Clasificación por patrón (por ejemplo, para imágenes)
+    clasificador_por_patron2(os.path.join(origen, "python"), config.PATRONES)
+
+    registros_salto()
+
+
+# Función para ejecutar automáticamente cada tiempo (valor en config.py)
+def ejecutar_automáticamente():
+    while True:
+        # Ejecuta la clasificación automáticamente
+        ejecutar_clasificacion()
+        registros_salto()
+        # Espera 24 horas (86400 segundos) antes de ejecutar nuevamente
+        time.sleep(config.TIEMPO_ENTRE_CADA_CLASIFICACION)
+        
+
+
+def main():
+    auto_ejecutar = config.CLASIFICAR_AUTOMATICO
+
+    if auto_ejecutar == True:
+        ejecutar_automáticamente()  # Ejecuta automáticamente cada 24 horas
     else:
-        empezar_evento(LOG_FILE)
-        clasificador_por_tipo(origen)
-        clasificador_por_fecha(origen)
-        clasificador_por_patron2(origen+"\imagenes", {"msi" : "msi"})
-    mostrar_log()
+        ejecutar_clasificacion()  # Ejecuta solo una vez
+    
 
-
-
+# Ejecutar el programa
 if __name__ == "__main__":
     main()
-
