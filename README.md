@@ -28,13 +28,7 @@ El sistema organizará los archivos en base a diferentes criterios:
 ### 📜 Registros y Seguridad  
 - **Registro de actividad:** Se almacenará un historial detallado de archivos movidos, renombrados y errores detectados.  
 - **Manejo de errores:** En caso de archivos corruptos o conflictos de nombres, se generarán alertas y soluciones alternativas.  
-- **Recuperación de archivos:** Opción para revertir cambios en caso de errores accidentales.  
-
-### 🖥 Interfaz Gráfica (GUI)  
-El sistema contará con una interfaz gráfica sencilla e intuitiva, diseñada con **Tkinter**, que permitirá:  
-- Seleccionar carpetas de origen y destino.  
-- Configurar las reglas de clasificación.  
-- Visualizar el estado del proceso en tiempo real.  
+- **Recuperación de archivos:** Opción para revertir cambios en caso de errores accidentales.   
 
 ## Tecnologías Utilizadas  
 
