@@ -47,12 +47,12 @@ El sistema contará con una interfaz gráfica sencilla e intuitiva, diseñada co
 **Bibliotecas:**  
 - `os` → Manejo del sistema de archivos.  
 - `shutil` → Movimientos y copias de archivos.  
-- `Tkinter` → Interfaz gráfica.  
 - `logging` → Registro de eventos y errores.  
 - `watchdog` → Detección de cambios en archivos en tiempo real.  
 
 ## Posibles Mejoras Futuras  
 - **Soporte para almacenamiento en la nube**.
+- **Implementar una interfaz gráfica**.
 - **Integración con bases de datos** para un historial más robusto.  
 - **Compatibilidad con más formatos y sistemas operativos**.
 
