@@ -25,14 +25,79 @@ Para un futuro, hacer un seguimiento más detallado de los archivos (como regist
 - ¿Qué normativas (e.g., GDPR) podrían afectar el uso de tu software y cómo las has tenido en cuenta?
 - Si no implementaste medidas de seguridad, ¿qué riesgos potenciales identificas y cómo los abordarías en el futuro?
 ### Implicación de las THD en negocio y planta (2e):
+
 - ¿Qué impacto tendría tu software en un entorno de negocio o en una planta industrial?
+
+Optimizaría la gestión de documentos en entornos industriales y empresariales, reduciendo el tiempo dedicado a la organización manual y minimizando errores. Aspectos que mejoraría:
+
+  + Optimización del flujo de trabajo: Organiza automáticamente documentos administrativos, contratos, facturas y reportes, evitando la pérdida de archivos importantes.
+
+  + Automatización de procesos administrativos: Clasificación automática de archivos contables, registros de clientes y reportes de ventas.
+
+  + Organización automática de archivos generados por sensores IoT y sistemas de monitoreo.
+
+  + Historial de mantenimiento y auditoría: Clasifica reportes por fecha, permitiendo un acceso rápido y ordenado a documentos de mantenimiento.
+
+
+
 - ¿Cómo crees que tu solución podría mejorar procesos operativos o la toma de decisiones?
+
+Automátizaría la gestión de los archivos que se generan y reduciría los errores. Además, mejoraría en auditorías, ya que permite clasificar archivos por fechas, lo que ayuda a encontrar registros e información más rapido. Con menos tiempo en tener que organizar los datos, mñas tiempo se tiene a realizar otras tareas.
+
+
+
 - Si tu proyecto no aplica directamente a negocio o planta, ¿qué otros entornos podrían beneficiarse?
+
+El software se podría modificar y optimizar para otros entornos, según los datos que se manejan. Por ejemplo, mediante el archivo de configuración se podrían modificar los tipos de archivos, para especificarlos al sentido de ese sector. O modificar las funcionalidades para que clasifique de otra manera según el negocio o lo que se pida.
+
+
+
 ### Mejoras en IT y OT (2f):
+
 - ¿Cómo puede tu software facilitar la integración entre entornos IT y OT?
+
+Puede actuar como un puente entre IT y OT al facilitar la gestión y organización de datos generados en ambos entornos. Algunas maneras en que puede mejorar esta integración incluyen:
+
+    + Automatización del manejo de archivos en sistemas mixtos: En entornos industriales, los dispositivos OT generan archivos de registro, reportes de mantenimiento y datos operativos. Al clasificar estos archivos de manera automática, facilita a los sistemas IT el análisis y monitoreo de estos datos.
+
+    + Mejora de la trazabilidad y auditoría de datos: El software ya incluye un archivo de log, lo que permite rastrear qué archivos fueron organizados, cuándo y dónde, facilitando la auditoría de procesos.
+
+
+
 - ¿Qué procesos específicos podrían beneficiarse de tu solución en términos de automatización o eficiencia?
+
+La principal de la que se encarga, que es la gestión de archivos en servidores IT. También en el momitoreo y almacenamiento de datos de sensores OT. Por último, ayuda a automatizar los archivos en equipos compartidos: en entornos con múltiples usuarios (como en una oficina), los equipos se llenan de archivos y generalmente desordenados. Reduciría el tiempo en el que estos usuarios estarían buscando archivos concretos.
+
+
+
 - Si no aplica a IT u OT, ¿cómo podrías adaptarlo para mejorar procesos tecnológicos concretos?
+
+Podría incluir:
+
+  + Integración con bases de datos: Puede ser modificado para enviar archivos organizados a una base de datos.
+
+  + Integración en la nube: Además de con una base de datos, podrían almacenarse en plataformas en la nube como Google Drive o OneDrive.
+
 ### Tecnologías Habilitadoras Digitales (2g):
-- ¿Qué tecnologías habilitadoras digitales (THD) has utilizado o podrías integrar en tu proyecto?
-- ¿Cómo mejoran estas tecnologías la funcionalidad o el alcance de tu software?
-- Si no has utilizado THD, ¿cómo podrías implementarlas para enriquecer tu solución?
+
+- ¿Qué tecnologías habilitadoras digitales (THD) has utilizado o podrías integrar en tu proyecto? ¿Cómo mejoran estas tecnologías la funcionalidad o el alcance de tu software? Si no has utilizado THD, ¿cómo podrías implementarlas para enriquecer tu solución?
+
+
+
+Actualmente, el software usa tecnologías básicas como:
+
+  + Automatización de procesos: Mediante Python, se logra la clasificación automática de archivos.
+
+  + Gestión de archivos y registros: Se utilizan módulos como os, shutil, re y datetime para organizar, mover y registrar archivos de manera eficiente.
+
+
+
+Sin embargo, se pueden integrar más tecnologías para mejorar su alcance, como:
+
+  + Inteligencia Artificial: Se podría usar IA para analizar patrones en los archivos y mejorar la clasificación automática, esto permitiría mayor automatización y precisión.
+
+  + Machine Learning: Modelos de ML podrían identificar archivos duplicados o predecir la categoría de documentos no reconocidos.
+
+  + Computación en la nube: Integrar almancenamiento en la nube para poder acceder desde cualquier lugar y permitiría colaboración en la nube.
+
+  + Integrar ciberseguridad mediante control de accesos: Agregar autenticación y permisos para que solo usuarios autorizados puedan mover ciertos archivos. Ayudaría a prevenir cambios no autorizados.
