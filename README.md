@@ -42,6 +42,7 @@ El sistema organizará los archivos en base a diferentes criterios:
 - `os` → Manejo del sistema de archivos.  
 - `shutil` → Movimientos y copias de archivos.  
 - `logging` → Registro de eventos y errores.  
+- `datetime, time, re` → Manejo de fechas, hora y expresiones regulares. 
 - `watchdog` → Detección de cambios en archivos en tiempo real.  
 
 ## Posibles Mejoras Futuras  
