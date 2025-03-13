@@ -21,12 +21,12 @@ Además, el programa mantiene un archivo de log (registro_actividad.txt) que reg
 
 ### Almacenamiento en la nube (5f):
 - Si no usas la nube, ¿cómo podrías integrarla en futuras versiones?
-Una de las opciones sería almacenar los archivos clasificados en un servicio en la nube como Google Drive, Dropbox, OneDrive o Amazon S3. Esto permitiría a los usuarios acceder a sus archivos desde cualquier dispositivo y garantizar una copia de seguridad segura. Para lograr esto, podría hacer uso de APIs específicas de cada plataforma, de modo que los archivos se suban automáticamente a carpetas organizadas según el criterio de clasificación elegido. También se podría implementar un sistema híbrido, donde los archivos más recientes se mantengan en local, pero aquellos más antiguos se trasladen a un almacenamiento en la nube para ahorrar espacio. Este enfoque permitiría combinar la velocidad del acceso local con la capacidad de almacenamiento prácticamente ilimitada de la nube. Se podría implementar con la herramienta rclone, permite programar la migración automática de archivos antiguos a un servicio como Google Drive, asegurando una gestión eficiente del almacenamiento.
 
-Otra posibilidad sería el uso de servicios de base de datos en la nube, como Firebase Storage o AWS RDS, para no solo almacenar los archivos, sino también mantener un registro de su ubicación y metadatos. De esta forma, se podría incluirel acceso a esta base de datos que permita a los usuarios visualizar y administrar sus archivos desde cualquier parte. 
+Para almacenar los datos en la nube, podría utilizar un servicio de almacenamiento en la nube como Amazon S3, Google Cloud Storage o Azure Blob Storage, que permiten subir, organizar y gestionar los archivos clasificados de manera eficiente. Los archivos deben ser subidos mediante APIs proporcionadas por el proveedor (como boto3 para AWS) y almacenados en contenedores o "buckets". Para garantizar la seguridad, los archivos se cifran tanto en reposo como en tránsito utilizando protocolos como HTTPS y el cifrado AES. Además, se deben implementar controles de acceso para asegurar que solo los usuarios autorizados puedan acceder o modificar los archivos, y aplicar políticas de alta disponibilidad como la replicación y redundancia para asegurar que los datos estén disponibles incluso ante fallos.
 
+La opción más clara sería almacenar los archivos clasificados en un servicio en la nube como Google Drive o Dropbox. Esto permitiría a los usuarios acceder a sus archivos desde cualquier dispositivo y garantizar una copia de seguridad segura. Para lograr esto, podría hacer uso de APIs específicas de cada plataforma, de modo que los archivos se suban automáticamente a carpetas organizadas según el criterio de clasificación elegido. También se podría implementar un sistema híbrido, donde los archivos más recientes se mantengan en local, pero aquellos más antiguos se trasladen a un almacenamiento en la nube para ahorrar espacio. Este enfoque permitiría combinar la velocidad del acceso local con la capacidad de almacenamiento prácticamente ilimitada de la nube. Se podría implementar con la herramienta rclone, permite programar la migración automática de archivos antiguos a un servicio como Google Drive, asegurando una gestión eficiente del almacenamiento.
 
-
+Otra posibilidad sería el uso de servicios de base de datos en la nube, para no solo almacenar los archivos, sino también mantener un registro de su ubicación y metadatos. De esta forma, se podría incluir esto y que permita a los usuarios visualizar y administrar sus archivos desde cualquier parte. 
 
 ### Seguridad y regulación (5i):
 - Si no implementaste medidas de seguridad, ¿qué riesgos potenciales identificas y cómo los abordarías en el futuro?
@@ -90,12 +90,9 @@ Para garantizar el cumplimiento de estas normaticas en un futuro, se considerar�
 
 Optimizaría la gestión de documentos en entornos industriales y empresariales, reduciendo el tiempo dedicado a la organización manual y minimizando errores. Aspectos que mejoraría:
 
-  + Optimización del flujo de trabajo: Organiza automáticamente documentos administrativos, contratos, facturas y reportes, evitando la pérdida de archivos importantes.
-
-  + Automatización de procesos administrativos: Clasificación automática de archivos contables, registros de clientes y reportes de ventas.
-
+  + **Optimización del flujo de trabajo**: Organiza automáticamente documentos administrativos, contratos, facturas y reportes, evitando la pérdida de archivos importantes.
+  + **Automatización de procesos administrativos**: Clasificación automática de archivos contables, registros de clientes y reportes de ventas.
   + Organización automática de archivos generados por sensores IoT y sistemas de monitoreo.
-
   + Historial de mantenimiento y auditoría: Clasifica reportes por fecha, permitiendo un acceso rápido y ordenado a documentos de mantenimiento.
 
 
@@ -104,13 +101,9 @@ Optimizaría la gestión de documentos en entornos industriales y empresariales,
 
 Automátizaría la gestión de los archivos que se generan y reduciría los errores. Además, mejoraría en auditorías, ya que permite clasificar archivos por fechas, lo que ayuda a encontrar registros e información más rapido. Con menos tiempo en tener que organizar los datos, mñas tiempo se tiene a realizar otras tareas.
 
-
-
 - Si tu proyecto no aplica directamente a negocio o planta, ¿qué otros entornos podrían beneficiarse?
 
 El software se podría modificar y optimizar para otros entornos, según los datos que se manejan. Por ejemplo, mediante el archivo de configuración se podrían modificar los tipos de archivos, para especificarlos al sentido de ese sector. O modificar las funcionalidades para que clasifique de otra manera según el negocio o lo que se pida.
-
-
 
 ### Mejoras en IT y OT (2f):
 
@@ -119,45 +112,28 @@ El software se podría modificar y optimizar para otros entornos, según los dat
 Puede actuar como un puente entre IT y OT al facilitar la gestión y organización de datos generados en ambos entornos. Algunas maneras en que puede mejorar esta integración incluyen:
 
   - **Automatización del manejo de archivos en sistemas mixtos: En entornos industriales, los dispositivos OT generan archivos de registro, reportes de mantenimiento y datos operativos. Al clasificar estos archivos de manera automática, facilita a los sistemas IT el análisis y monitoreo de estos datos.
-
-  - Mejora de la trazabilidad y auditoría de datos**: El software ya incluye un archivo de log, lo que permite rastrear qué archivos fueron organizados, cuándo y dónde, facilitando la auditoría de procesos.
-
-
+  - **Mejora de la trazabilidad y auditoría de datos**: El software ya incluye un archivo de log, lo que permite rastrear qué archivos fueron organizados, cuándo y dónde, facilitando la auditoría de procesos.
 
 - ¿Qué procesos específicos podrían beneficiarse de tu solución en términos de automatización o eficiencia?
 
 La principal de la que se encarga, que es la gestión de archivos en servidores IT. También en el momitoreo y almacenamiento de datos de sensores OT. Por último, ayuda a automatizar los archivos en equipos compartidos: en entornos con múltiples usuarios (como en una oficina), los equipos se llenan de archivos y generalmente desordenados. Reduciría el tiempo en el que estos usuarios estarían buscando archivos concretos.
-
-
 
 - Si no aplica a IT u OT, ¿cómo podrías adaptarlo para mejorar procesos tecnológicos concretos?
 
 Podría incluir:
 
   + Integración con bases de datos: Puede ser modificado para enviar archivos organizados a una base de datos.
-
   + Integración en la nube: Además de con una base de datos, podrían almacenarse en plataformas en la nube como Google Drive o OneDrive.
 
 ### Tecnologías Habilitadoras Digitales (2g):
 
 - ¿Qué tecnologías habilitadoras digitales (THD) has utilizado o podrías integrar en tu proyecto? ¿Cómo mejoran estas tecnologías la funcionalidad o el alcance de tu software? Si no has utilizado THD, ¿cómo podrías implementarlas para enriquecer tu solución?
 
+Las tecnologías mejoran la funcionalidad al ofrecer escalabilidad y acceso global a los archivos, lo que permite manejar grandes volúmenes de datos sin preocupaciones por la infraestructura. Además, garantizan seguridad avanzada mediante cifrado y control de acceso, protegiendo los datos. La alta disponibilidad y la recuperación ante desastres aseguran que los archivos sean accesibles en todo momento, mejorando la fiabilidad del sistema. Por último, reducen costos de mantenimiento al eliminar la necesidad de gestionar infraestructura física.
 
-
-Actualmente, el software usa tecnologías básicas como:
-
-  + Automatización de procesos: Mediante Python, se logra la clasificación automática de archivos.
-
-  + Gestión de archivos y registros: Se utilizan módulos como os, shutil, re y datetime para organizar, mover y registrar archivos de manera eficiente.
-
-
-
-Sin embargo, se pueden integrar más tecnologías para mejorar su alcance, como:
+Actualmente, el software usa tecnologías básicas como automatización de procesos y gestión de archivos y registros. Además de bibliotecas para el manejo de estos. Sin embargo, se pueden integrar más tecnologías para mejorar su alcance, como:
 
   + Inteligencia Artificial: Se podría usar IA para analizar patrones en los archivos y mejorar la clasificación automática, esto permitiría mayor automatización y precisión.
-
   + Machine Learning: Modelos de ML podrían identificar archivos duplicados o predecir la categoría de documentos no reconocidos.
-
   + Computación en la nube: Integrar almancenamiento en la nube para poder acceder desde cualquier lugar y permitiría colaboración en la nube.
-
   + Integrar ciberseguridad mediante control de accesos: Agregar autenticación y permisos para que solo usuarios autorizados puedan mover ciertos archivos. Ayudaría a prevenir cambios no autorizados.
