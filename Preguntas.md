@@ -12,18 +12,78 @@ Después de clasificar los archivos, el programa los mueve a carpetas organizada
 
 Cuando se mueve un archivo, el proceso está diseñado para controlar los posibles fallos. Por ejemplo, si se mueve un archivo de una carpeta a otra, se asegura de que la carpeta destino exista antes de realizar el movimiento. Esto se realiza con una verificación que crea la carpeta si no existe (os.makedirs(destino)), lo que reduce el riesgo de que el archivo se pierda por falta de destino.
 Además, el programa mantiene un archivo de log (registro_actividad.txt) que registra todos los movimientos y eventos que se producen en el proceso. Esto ayuda a controlar y rastrear el ciclo de vida de cada archivo, asegurando que se pueda identificar cualquier problema o inconsistencia en el proceso de clasificación y movimiento de los archivos.
-- Si no trabajas con datos, ¿cómo podrías incluir una funcionalidad que los gestione de forma eficiente?
 
-Para un futuro, hacer un seguimiento más detallado de los archivos (como registrar más información sobre cada archivo, como quién lo creó, cuándo fue modificado por última vez, etc.), se podría usar una base de datos para almacenar estos metadatos. Además, se podría implementar la eliminación de archivos antiguos o archivarlos después de cierto período de tiempo para gestionar el almacenamiento de manera eficiente. 
+**Integridad** y **trazabilidad** de los datos (mejoras futuras):
+- Una manera garantizar que los archivos no han sido alterados accidentalmente o de manera malintencionada es el uso de hashes. Algoritmos como SHA-256 o MD5 pueden generar un identificador único para cada archivo antes y después de su clasificación. Si un archivo cambia inesperadamente, el hash será diferente, alertando de una posible alteración.
+- Para evitar la pérdida de datos o corrupciones accidentales se realiza mediante versiones anteriores de los archivos antes de moverlos o modificarlos. Esto puede lograrse mediante una copia de seguridad, en una carpeta externa.
+- Para un futuro, mejorar los detalles de los registros, haciendo un seguimiento más detallado de los archivos (como registrar más información sobre cada archivo, como quién lo creó, cuándo fue modificado por última vez, etc.), se podría usar una base de datos para almacenar estos metadatos.
+- Se podría implementar la eliminación de archivos antiguos o archivarlos después de cierto período de tiempo para gestionar el almacenamiento de manera eficiente. 
 
 ### Almacenamiento en la nube (5f):
-- Si tu software utiliza almacenamiento en la nube, ¿cómo garantizas la seguridad y disponibilidad de los datos?
-- ¿Qué alternativas consideraste para almacenar datos y por qué elegiste tu solución actual?
 - Si no usas la nube, ¿cómo podrías integrarla en futuras versiones?
+Una de las opciones sería almacenar los archivos clasificados en un servicio en la nube como Google Drive, Dropbox, OneDrive o Amazon S3. Esto permitiría a los usuarios acceder a sus archivos desde cualquier dispositivo y garantizar una copia de seguridad segura. Para lograr esto, podría hacer uso de APIs específicas de cada plataforma, de modo que los archivos se suban automáticamente a carpetas organizadas según el criterio de clasificación elegido. También se podría implementar un sistema híbrido, donde los archivos más recientes se mantengan en local, pero aquellos más antiguos se trasladen a un almacenamiento en la nube para ahorrar espacio. Este enfoque permitiría combinar la velocidad del acceso local con la capacidad de almacenamiento prácticamente ilimitada de la nube. Se podría implementar con la herramienta rclone, permite programar la migración automática de archivos antiguos a un servicio como Google Drive, asegurando una gestión eficiente del almacenamiento.
+
+Otra posibilidad sería el uso de servicios de base de datos en la nube, como Firebase Storage o AWS RDS, para no solo almacenar los archivos, sino también mantener un registro de su ubicación y metadatos. De esta forma, se podría incluirel acceso a esta base de datos que permita a los usuarios visualizar y administrar sus archivos desde cualquier parte. 
+
+
+
+
 ### Seguridad y regulación (5i):
-- ¿Qué medidas de seguridad implementaste para proteger los datos o procesos en tu proyecto?
-- ¿Qué normativas (e.g., GDPR) podrían afectar el uso de tu software y cómo las has tenido en cuenta?
 - Si no implementaste medidas de seguridad, ¿qué riesgos potenciales identificas y cómo los abordarías en el futuro?
+
+Uno de los principales riesgos es la manipulación de archivos sin validación adecuada. Actualmente, el script mueve archivos sin verificar si el usuario tiene los permisos necesarios para acceder o modificarlos. Esto podría generar errores inesperados o incluso impedir la correcta clasificación de archivos. Para evitarlo, utilizaré os.access() antes de mover un archivo, asegurándome de que el usuario tenga permisos de lectura y escritura.
+
+Otro problema es la sobrescritura o duplicación de archivos. En la implementación actual, si un archivo con el mismo nombre ya existe en la carpeta de destino, simplemente se ignora el movimiento. Esto podría llevar a la pérdida de archivos o confusión en la organización. Para solucionarlo, se puede implementar una función que renombre los archivos duplicados agregando un sufijo numérico, asegurando así que todos los archivos sean almacenados sin riesgo de eliminación accidental.
+
+#### Normativas a considerar:
+
+#### **1. GDPR y LOPDGDD (Protección de Datos en España)**  
+En España se sigue el **GDPR (Reglamento General de Protección de Datos de la UE)**, complementado por la **LOPDGDD (Ley Orgánica 3/2018)**.  
+
+**Riesgos**  
+  - **Falta de control de acceso:** Cualquier usuario del sistema puede mover y acceder a archivos sin restricciones.  
+  - **Registros inseguros:** `registro_actividad.txt` podría almacenar datos sensibles sin cifrado ni medidas de seguridad.  
+  - **Derecho al olvido:** No hay una funcionalidad que permita eliminar datos personales de forma segura.  
+
+**Recomendaciones:**  
+  - Implementar **permisos de usuario** para evitar accesos no autorizados.  
+  - Cifrar los archivos sensibles y los registros de actividad.  
+  - Permitir la **eliminación segura** de archivos que contengan datos personales, cumpliendo con el derecho al olvido.  
+
+#### **2. ENS (Esquema Nacional de Seguridad) – Seguridad en Entornos Públicos**  
+Si el software se usa en una **administración pública española**, debe cumplir con el **ENS (Esquema Nacional de Seguridad)**.  
+
+**Riesgos:**  
+  - **Falta de autenticación y control de usuarios.**  
+  - **No se verifica la integridad de los archivos después de moverlos.**  
+  - **Ausencia de registros detallados de seguridad.**  
+
+**Recomendaciones:**  
+  - Añadir **autenticación de usuarios** y permisos de acceso.  
+  - Usar **hashes (SHA-256)** para verificar que los archivos no se corrompan.  
+  - Registrar los eventos en un **log seguro y auditable**.  
+
+#### **3. ISO/IEC 27001 (Gestión de Seguridad de la Información)**  
+Si el software se usa en una empresa, seguir la **ISO 27001** garantizará una mejor protección de la información.  
+
+**Riesgos:**  
+  - **No hay monitoreo de accesos sospechosos.**  
+  - **El sistema no detecta intentos de acceso no autorizados.**  
+
+** Recomendaciones:**  
+  - Registrar accesos y actividades en un log seguro.  
+  - Generar **alertas** ante movimientos sospechosos de archivos.  
+  - Aplicar **cifrado AES-256** en archivos clasificados como confidenciales.  
+
+**Mejoras para Cumplir con estas Normativas**  
+Para garantizar el cumplimiento de estas normaticas en un futuro, se considerará:  
+
+- **Control de acceso:** Restringir el uso del script según permisos de usuario.  
+- **Cifrado de archivos sensibles:** Usar **AES-256** para proteger datos personales.   
+- **Verificación de integridad:** Aplicar **hashes (SHA-256)** a los archivos antes y después de moverlos.  
+- **Monitoreo y alertas:** Detectar intentos de acceso sospechosos.  
+- **Eliminación segura:** Permitir borrar archivos de manera irreversible, cumpliendo con el **derecho al olvido**.  
+
 ### Implicación de las THD en negocio y planta (2e):
 
 - ¿Qué impacto tendría tu software en un entorno de negocio o en una planta industrial?
