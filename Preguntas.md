@@ -58,9 +58,9 @@ El software se podría modificar y optimizar para otros entornos, según los dat
 
 Puede actuar como un puente entre IT y OT al facilitar la gestión y organización de datos generados en ambos entornos. Algunas maneras en que puede mejorar esta integración incluyen:
 
-    + Automatización del manejo de archivos en sistemas mixtos: En entornos industriales, los dispositivos OT generan archivos de registro, reportes de mantenimiento y datos operativos. Al clasificar estos archivos de manera automática, facilita a los sistemas IT el análisis y monitoreo de estos datos.
+  - **Automatización del manejo de archivos en sistemas mixtos: En entornos industriales, los dispositivos OT generan archivos de registro, reportes de mantenimiento y datos operativos. Al clasificar estos archivos de manera automática, facilita a los sistemas IT el análisis y monitoreo de estos datos.
 
-    + Mejora de la trazabilidad y auditoría de datos: El software ya incluye un archivo de log, lo que permite rastrear qué archivos fueron organizados, cuándo y dónde, facilitando la auditoría de procesos.
+  - Mejora de la trazabilidad y auditoría de datos**: El software ya incluye un archivo de log, lo que permite rastrear qué archivos fueron organizados, cuándo y dónde, facilitando la auditoría de procesos.
 
 
 
