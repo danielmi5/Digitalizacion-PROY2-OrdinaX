@@ -1,5 +1,7 @@
 # Sistema de Organización Automática de Archivos - OrdinaX
 
+Guía para ejecutar el script [aquí](https://github.com/danielmi5/Digitalizacion-PROY2-OrdinaX/blob/959ee6b86742f54cc2ccd6d3f998281700ef2f15/Tutorial.md).
+
 ## Descripción General  
 El proyecto consiste en un **sistema de organización automática de archivos**, diseñado para facilitar la gestión y clasificación de documentos dentro de un sistema de directorios.  
 
@@ -43,7 +45,7 @@ El sistema organizará los archivos en base a diferentes criterios:
 - `shutil` → Movimientos y copias de archivos.  
 - `logging` → Registro de eventos y errores.  
 - `datetime, time, re` → Manejo de fechas, hora y expresiones regulares. 
-- `watchdog` → Detección de cambios en archivos en tiempo real.  
+- `watchdog` → Detección de cambios en archivos en tiempo real.
 
 ## Posibles Mejoras Futuras  
 - **Soporte para almacenamiento en la nube**.
