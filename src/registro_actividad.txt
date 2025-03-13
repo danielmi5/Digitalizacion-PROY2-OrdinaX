@@ -1,18 +1,1 @@
-2025-03-05 11:17:52 - Iniciando clasificación en: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba
-2025-03-05 11:17:52 - Carpeta creada: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\documentos
-2025-03-05 11:17:52 - Archivo doc.txt movido a: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\documentos
-2025-03-05 11:17:52 - Carpeta creada: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\imagenes
-2025-03-05 11:17:52 - Archivo msi2.png movido a: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\imagenes
-2025-03-05 11:17:52 - Carpeta creada: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python
-2025-03-05 11:17:52 - Archivo python.py movido a: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python
-2025-03-05 11:17:52 - Carpeta creada: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\imagenes\msi
-2025-03-05 11:17:52 - Archivo msi2.png movido a: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\imagenes\msi
-2025-03-05 11:18:49 - Iniciando clasificación en: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba
-2025-03-05 11:18:49 - Carpeta creada: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python
-2025-03-05 11:18:49 - Archivo python.py movido a: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python
-2025-03-05 11:21:04 - Iniciando clasificación en: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba
-2025-03-05 11:21:04 - Error al mover python: Cannot move a directory 'C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python' into itself 'C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python\python'.
-
-2025-03-05 11:21:12 - Iniciando clasificación en: C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba
-2025-03-05 11:21:12 - Error al mover python: Cannot move a directory 'C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python' into itself 'C:\Users\danie\Documents\zDAWGIT\xgit\Digitalizacion-PROY2-OrdinaX\prueba\python\python\python'.
 
