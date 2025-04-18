@@ -1,18 +1,34 @@
-# Ruta del directorio que quieres clasificar
-RUTA_ORIGEN = "prueba"  # Cambiar según sea necesario
-CLASIFICAR_AUTOMATICO = False
-TIEMPO_ENTRE_CADA_CLASIFICACION = 86400  # SOLO EN CASO DE QUE SEA AUTO Y EN SEGUNDOS
+# --------------------------------------------
+# Archivo de Configuración para el Organizador
+# --------------------------------------------
+# Aquí se definen rutas, parámetros de ejecución,
+# criterios de clasificación y estructuras de carpetas.
+# Este archivo es utilizado por el script principal.
 
-# Orden de prioridad de clasificación
-ORDEN_CLASIFICACION = ["tipo", "fecha", "patron"]  # Posibles valores: "tipo", "fecha", "patron"
+# Ruta del directorio que se desea clasificar
+RUTA_ORIGEN = "prueba"  # Cambiar esta ruta a la carpeta deseada
 
-# Patrón para clasificar archivos en subcarpetas
+# Determina si la clasificación se ejecuta en modo automático
+CLASIFICAR_AUTOMATICO = False  # True = ejecuta indefinidamente; False = solo una vez
+
+# Tiempo de espera entre cada clasificación (en segundos) si está en automático
+TIEMPO_ENTRE_CADA_CLASIFICACION = 86400  # Ejemplo: 86400 = 24 horas
+
+# Orden de los criterios de clasificación a aplicar
+# Opciones posibles: "tipo", "fecha", "patron"
+ORDEN_CLASIFICACION = ["tipo", "fecha", "patron"]
+
+# Diccionario de patrones (expresiones regulares simples) para clasificar por nombre
+# Clave = nombre de la subcarpeta destino
+# Valor = patrón que debe coincidir con el nombre del archivo (sin extensión)
 PATRONES = {
-    "msi": "msi",
-    "python": "py",
+    "msi": "msi",       # Archivos cuyo nombre contenga "msi"
+    "python": "py",     # Archivos cuyo nombre contenga "py"
 }
 
-# Diccionario con las categorías de archivos y sus extensiones
+# Diccionario que define tipos de archivos según su extensión
+# Clave = nombre de la subcarpeta destino
+# Valor = lista de extensiones asociadas a ese tipo
 TIPOS_DE_ARCHIVOS = {
     "python": [".py", ".pyc", ".pyo"],
     "kotlin": [".kt"],
@@ -28,5 +44,5 @@ TIPOS_DE_ARCHIVOS = {
     "otros": [".md", ".json", ".xml", ".yml", ".ini", ".log"],
 }
 
-# Ruta para el archivo de registro
+# Ruta del archivo donde se guardarán los logs del sistema
 ARCHIVO_LOG = "src/registro_actividad.txt"
