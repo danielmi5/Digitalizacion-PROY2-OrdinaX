@@ -20,7 +20,7 @@ import datetime
 import time
 import re
 import logging
-import config
+from src import config
 
 # Configuración del sistema de logs
 logging.basicConfig(filename=config.ARCHIVO_LOG, level=logging.INFO,
