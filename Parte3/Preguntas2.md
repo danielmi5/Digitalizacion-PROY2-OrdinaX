@@ -35,7 +35,7 @@ Principalmente las áreas más afectadas son las que manejan grandes volúmenes 
 
   - **Soporte técnico**: Se genera documentos como tickets de soporte, informes de seguimiento o comunicaciones registradas, frecuentemente. Estos documentos necesitan ser archivados correctamente para su trazabilidad y análisis. La digitalización facilita la gestión automática de documentos generados en la interacción con clientes, lo que mejora la trazabilidad de casos y permite respuestas más rápidas y ordenadas.
 
-  - **Proyectos y planificación**: Esta área produce numerosos documentos relacionados con cronogramas, entregables, reportes de avance y documentación técnica que requieren una estructura clara para su consulta y seguimiento. En este caso, La automatización permite mantener todo el material técnico y documental ordenado por fases, equipos o fechas, ayudando a una gestión de proyectos más eficiente y colaborativa.
+  - **Proyectos y planificación**: Esta área produce numerosos documentos relacionados con proyectos, reportes de avance y documentación técnica que requieren una estructura clara para su consulta y seguimiento. En este caso, La automatización permite mantener todo el material técnico y documental ordenado por fases, equipos o fechas, ayudando a una gestión de proyectos más eficiente y colaborativa.
 
 
 #### Criterio 6d) Encaje de áreas digitalizadas (AD):
