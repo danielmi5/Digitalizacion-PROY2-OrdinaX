@@ -9,9 +9,6 @@ Este script clasifica y organiza archivos desde una carpeta origen usando criter
 La configuración general se toma desde un archivo `config.py`, el cual debe definir rutas, patrones, y opciones de ejecución.
 
 Requiere: Python 3.x, módulos estándar (os, shutil, datetime, logging, re), y un archivo de configuración `config.py`.
-
-Autor: [Tu nombre o equipo]
-Fecha: [Opcional]
 """
 
 import os
