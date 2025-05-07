@@ -6,7 +6,7 @@
 # Este archivo es utilizado por el script principal.
 
 # Ruta del directorio que se desea clasificar
-RUTA_ORIGEN = "prueba"  # Cambiar esta ruta a la carpeta deseada
+RUTA_ORIGEN = "./prueba"  # Cambiar esta ruta a la carpeta deseada
 
 # Determina si la clasificación se ejecuta en modo automático
 CLASIFICAR_AUTOMATICO = False  # True = ejecuta indefinidamente; False = solo una vez
@@ -22,8 +22,7 @@ ORDEN_CLASIFICACION = ["tipo", "fecha", "patron"]
 # Clave = nombre de la subcarpeta destino
 # Valor = patrón que debe coincidir con el nombre del archivo (sin extensión)
 PATRONES = {
-    "msi": "msi",       # Archivos cuyo nombre contenga "msi"
-    "python": "py",     # Archivos cuyo nombre contenga "py"
+    
 }
 
 # Diccionario que define tipos de archivos según su extensión
@@ -45,4 +44,4 @@ TIPOS_DE_ARCHIVOS = {
 }
 
 # Ruta del archivo donde se guardarán los logs del sistema
-ARCHIVO_LOG = "src/registro_actividad.txt"
+ARCHIVO_LOG = "./registro_actividad.txt"
