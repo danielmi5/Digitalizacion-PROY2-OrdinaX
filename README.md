@@ -1,9 +1,22 @@
 # Sistema de Organización Automática de Archivos - OrdinaX
 
-## Descripción General  
 El proyecto consiste en un **sistema de organización automática de archivos**, diseñado para facilitar la gestión y clasificación de documentos dentro de un sistema de directorios.  
 
-El objetivo principal es **automatizar** la tarea de organizar archivos de manera eficiente, permitiendo que estos se **clasifiquen y se muevan** sin intervención manual. Este sistema es ideal para usuarios que manejan grandes volúmenes de archivos y necesitan mantener un orden coherente sin invertir tiempo en tareas repetitivas.  
+El objetivo principal es **automatizar** la tarea de organizar archivos de manera eficiente, permitiendo que estos se **clasifiquen y se muevan** sin intervención manual. Este sistema es ideal para usuarios que manejan grandes volúmenes de archivos y necesitan mantener un orden coherente sin invertir tiempo en tareas repetitivas.
+
+## Contenidos
+
+- [Motivación](#motivación)
+- [¿Por qué?](#por-qué)
+- [Objetivos](#objetivos)
+- [Cómo funciona](#cómo-funciona)
+- [Características](#características)
+- [Ejemplos de uso](#ejemplos-de-uso)
+- [Instrucciones](#instrucciones)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Contribuciones](#contribuciones)
+- [Posibles Mejoras Futuras](#posibles-mejoras-futuras)
+- [Licencia](#licencia)
 
 ## Motivación
 
