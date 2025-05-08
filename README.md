@@ -154,6 +154,11 @@ Este script moverá los archivos que contengan "ej" a una carpeta `ejercicios/` 
 
 Estas instrucciones te guiarán paso a paso para configurar el clasificador de archivos para poder ejecutarlo correctamente.
 
+* **Requisitos**
+   *   Tener Python instalado.
+   *   Tener los archivos `config.py` y `main.py` en una carpeta de tu elección.
+   *   Configura el archivo `config.py` antes de ejecutar el script.
+
 Para ejecutarlo manualmente:
 
 * En Windows: En una terminal ejecutar ```python main.py```
