@@ -40,8 +40,22 @@ Principalmente las áreas más afectadas son las que manejan grandes volúmenes 
 
 #### Criterio 6d) Encaje de áreas digitalizadas (AD):
 - **¿Cómo interactúan las áreas digitalizadas con las no digitalizadas?**
+
+En este proyecto, el script de organización de archivos representa un proceso digitalizado, mientras que las áreas no digitalizadas podrían ser: los usuarios que aún organizan archivos manualmente, equipos que no utilizan estructuras de carpetas coherentes o documentos físicos.
+
+La interacción entre estas áreas se da cuando los usuarios añaden archivos desordenados en la carpeta sin seguir criterios claros. El script entra en acción posteriormente para organizar ese contenido, pero la entrada de datos sigue siendo manual y no estructurada, lo que puede limitar su eficiencia y alcance.
+
 - **¿Qué soluciones o mejoras propondrías para integrar estas áreas?**
 
+- **Una interfaz**: Crear una interfaz gráfica simple o web donde los usuarios puedan subir archivos y seleccionar el tipo, categoría o fecha, facilitando la organización desde el origen.
+
+- **Automatización desde fuentes externas**: Integrar el script con servicios de almacenamiento (como Google Drive, Dropbox, o carpetas compartidas en red) para que la clasificación ocurra automáticamente al subir archivos, sin intervención manual.
+
+- **Buenas prácticas para usuarios**: Promover el uso correcto de nombres de archivo o formatos estándar para que los patrones definidos en el script (regex) funcionen con mayor precisión.
+
+- **Notificaciones automatizadas**: Enviar alertas o reportes (por correo o Telegram, por ejemplo) que informen al usuario qué se ha clasificado y cómo..
+
+- **Expansión a sistemas híbridos**: Digitalizar documentos físicos mediante escaneo y OCR, y luego pasarlos por el clasificador para integrarlos al mismo flujo digital.
 
 #### Criterio 6e) Necesidades presentes y futuras:
 - **¿Qué necesidades actuales de la empresa resuelve tu software?**
@@ -82,6 +96,7 @@ Aunque, se podrían incorporar en un futuro, las siguientes mejoras:
 
 #### Criterio 6g) Brechas de seguridad:
 - **¿Qué posibles brechas de seguridad podrían surgir al implementar tu software?**
+
 **Acceso no autorizado a archivos**: Si el script se ejecuta en una carpeta compartida sin restricciones, cualquier usuario con acceso podría visualizar, modificar o eliminar archivos clasificados.
 
 **Modificación del script o configuración**: Usuarios malintencionados podrían alterar el archivo `config.py` para cambiar rutas, patrones o comportamiento del programa, lo que podría llevar a la pérdida de información o desorganización.
