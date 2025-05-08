@@ -164,7 +164,7 @@ Para ejecutarlo manualmente:
 * En Windows: En una terminal ejecutar ```python main.py```
 * En Linux/macOS: En una terminal ejecutar ```python3 main.py```
 
-Para ejecutarlo automáticamente puedes seguir esta [GUIA](https://github.com/danielmi5/Digitalizacion-PROY2-OrdinaX/blob/main/GUIA), creada para mostrar los pasos para configurarlo en diferentes sistemas operativos.
+Para ejecutarlo automáticamente puedes seguir esta [GUIA](https://github.com/danielmi5/Digitalizacion-PROY2-OrdinaX/blob/main/GUIA.md), creada para mostrar los pasos para configurarlo en diferentes sistemas operativos.
 
 ## Tecnologías Utilizadas  
 
@@ -186,7 +186,7 @@ Para ejecutarlo automáticamente puedes seguir esta [GUIA](https://github.com/da
 
 ¡Las contribuciones son muy bienvenidas! Ya sea para mejorar el código, proponer nuevas funciones o mejorar la documentación.
 
-Consulta el archivo [CONTRIBUTING.md](https://github.com/danielmi5/Digitalizacion-PROY2-OrdinaX/blob/main/CONTRIBUTING) para conocer como puedes contribuir al proyecto.
+Consulta el archivo [CONTRIBUTING.md](https://github.com/danielmi5/Digitalizacion-PROY2-OrdinaX/blob/main/CONTRIBUTING.md) para conocer como puedes contribuir al proyecto.
 
 ## Posibles Mejoras Futuras  
 - **Soporte para almacenamiento en la nube**.
