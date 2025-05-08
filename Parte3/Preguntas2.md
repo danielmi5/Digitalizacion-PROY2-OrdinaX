@@ -47,13 +47,13 @@ La interacción entre estas áreas se da cuando los usuarios añaden archivos de
 
 - **¿Qué soluciones o mejoras propondrías para integrar estas áreas?**
 
-- **Una interfaz**: Crear una interfaz gráfica simple o web donde los usuarios puedan subir archivos y seleccionar el tipo, categoría o fecha, facilitando la organización desde el origen.
+- **Una interfaz**: Crear una interfaz gráfica donde los usuarios puedan subir archivos y seleccionar el tipo, categoría o fecha, facilitando la organización.
 
 - **Automatización desde fuentes externas**: Integrar el script con servicios de almacenamiento (como Google Drive, Dropbox, o carpetas compartidas en red) para que la clasificación ocurra automáticamente al subir archivos, sin intervención manual.
 
 - **Buenas prácticas para usuarios**: Promover el uso correcto de nombres de archivo o formatos estándar para que los patrones definidos en el script (regex) funcionen con mayor precisión.
 
-- **Notificaciones automatizadas**: Enviar alertas o reportes (por correo o Telegram, por ejemplo) que informen al usuario qué se ha clasificado y cómo..
+- **Notificaciones automatizadas**: Enviar alertas o reportes (por correo o Telegram, por ejemplo) que informen al usuario qué se ha clasificado y cómo.
 
 - **Expansión a sistemas híbridos**: Digitalizar documentos físicos mediante escaneo y OCR, y luego pasarlos por el clasificador para integrarlos al mismo flujo digital.
 
@@ -123,13 +123,9 @@ Aunque, se podrían incorporar en un futuro, las siguientes mejoras:
 #### Criterio 6h) Tratamiento de datos y análisis:
 - **¿Cómo se gestionan los datos en tu software y qué metodologías utilizas?**
 
-En este proyecto, los datos principales son los archivos del sistema de archivos, cuya información se analiza en función de:
+En este proyecto, los datos principales son los archivos del sistema de archivos, cuya información se analiza en función de: nombre de archivo, su extensión y la fecha de modificación.
 
-- Nombre de archivo
-- Extensión
-- Fecha de última modificación
-
-El software utiliza métodos de análisis estructurado mediante funciones definidas en Python como: Expresiones regulares (regex) para detectar patrones en nombres de archivos, lectura de metadatos (fecha de modificación) usando os y datetime y clasificación según tipo de archivo por su extensión.
+El script utiliza métodos de análisis estructurado mediante funciones definidas en Python como: Expresiones regulares (regex) para detectar patrones en nombres de archivos, lectura de metadatos (fecha de modificación) usando os y datetime y clasificación según tipo de archivo por su extensión.
 Esta lógica sigue una estructura modular y configurable, con separación entre lógica (main.py) y parámetros (config.py), lo que permite adaptar el comportamiento sin modificar el código fuente.
 
 
