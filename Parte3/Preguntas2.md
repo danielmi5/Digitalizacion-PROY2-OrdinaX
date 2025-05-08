@@ -82,14 +82,13 @@ Aunque, se podrían incorporar en un futuro, las siguientes mejoras:
 
 #### Criterio 6g) Brechas de seguridad:
 - **¿Qué posibles brechas de seguridad podrían surgir al implementar tu software?**
+**Acceso no autorizado a archivos**: Si el script se ejecuta en una carpeta compartida sin restricciones, cualquier usuario con acceso podría visualizar, modificar o eliminar archivos clasificados.
 
-  1. **Acceso no autorizado a archivos**: Si el script se ejecuta en una carpeta compartida sin restricciones, cualquier usuario con acceso podría visualizar, modificar o eliminar archivos clasificados.
+**Modificación del script o configuración**: Usuarios malintencionados podrían alterar el archivo `config.py` para cambiar rutas, patrones o comportamiento del programa, lo que podría llevar a la pérdida de información o desorganización.
 
-  2. **Modificación del script o configuración**: Usuarios malintencionados podrían alterar el archivo `config.py` para cambiar rutas, patrones o comportamiento del programa, lo que podría llevar a la pérdida de información o desorganización.
+**Pérdida de datos durante el movimiento de archivos**: Si ocurre un error durante el traslado y no se registra correctamente, podría perderse información importante.
 
-  3. **Pérdida de datos durante el movimiento de archivos**: Si ocurre un error durante el traslado y no se registra correctamente, podría perderse información importante.
-
-  4. **Exposición del archivo de logs**: El archivo `registro_actividad.txt` puede contener información sensible sobre nombres de archivos y estructura interna, lo que representa un riesgo si no se protege adecuadamente.
+**Exposición del archivo de logs**: El archivo `registro_actividad.txt` puede contener información sensible sobre nombres de archivos y estructura interna, lo que representa un riesgo si no se protege adecuadamente.
 
 - **¿Qué medidas concretas propondrías para mitigarlas?**
 
@@ -108,4 +107,35 @@ Aunque, se podrían incorporar en un futuro, las siguientes mejoras:
 
 #### Criterio 6h) Tratamiento de datos y análisis:
 - **¿Cómo se gestionan los datos en tu software y qué metodologías utilizas?**
+
+En este proyecto, los datos principales son los archivos del sistema de archivos, cuya información se analiza en función de:
+
+- Nombre de archivo
+- Extensión
+- Fecha de última modificación
+
+El software utiliza métodos de análisis estructurado mediante funciones definidas en Python como: Expresiones regulares (regex) para detectar patrones en nombres de archivos, lectura de metadatos (fecha de modificación) usando os y datetime y clasificación según tipo de archivo por su extensión.
+Esta lógica sigue una estructura modular y configurable, con separación entre lógica (main.py) y parámetros (config.py), lo que permite adaptar el comportamiento sin modificar el código fuente.
+
+
 - **¿Qué haces para garantizar la calidad y consistencia de los datos?**
+
+1. Uso de configuración: El archivo config.py garantiza que todos los criterios de clasificación estén bien definidos y validados antes de ejecutar el script.
+
+
+2. Validación de existencia de archivos y carpetas: Antes de mover cualquier archivo, el programa verifica si:
+
+- El archivo existe.
+- La carpeta destino existe (y la crea si no).
+- El archivo no está duplicado en destino.
+
+3. Sistema de logs detallado: Todos los eventos se registran en un archivo de log (registro_actividad.txt), lo que permite:
+
+- Auditar las acciones realizadas.
+- Detectar errores o inconsistencias.
+- Asegurar la trazabilidad de cada archivo clasificado.
+
+4. Control de duplicados y errores: Si un archivo ya existe en la carpeta destino, no se sobreescribe y se registra una advertencia. Esto evita pérdidas de datos o sobrescritura accidental.
+
+
+5. Pruebas por pasos configurables: El orden de clasificación puede ajustarse (tipo, fecha, patrón) lo que permite probar o depurar cada criterio de forma independiente y mejorar la precisión.
