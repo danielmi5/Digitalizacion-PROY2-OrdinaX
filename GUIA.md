@@ -4,7 +4,7 @@ Este tutorial te guiará paso a paso para configurar el clasificador de archivos
 
 ## Pasos para que el script sea automático mediante el programador de tareas (Windows)
 
-* **Abrir el Programador de Tareas:**
+* **Abre el Programador de Tareas:**
     *   Busca "Programador de tareas" en el menú de inicio.
     *   Ábrelo. En el panel derecho, haz clic en "Crear tarea básica...".
     *   Dale un nombre a la tarea (por ejemplo, "Clasificador automático").
